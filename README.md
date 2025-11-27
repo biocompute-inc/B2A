@@ -14,8 +14,8 @@ The script takes 3 inputs in the following order:
 
 Outputs:
 - A log directory folder named ASCII logs is created and the following are logged:
-    a. ASCII Log_ddmmyy_hhmmss: Contains the output shown on the terminal, contains the binary and ASCII sequence extracted from the .BAM file.
-    b. methpos_ddmmyy_hhmmss: Contains the position and the methylation fractions of sites that have methylation fractions above the threshold set.
+    - ASCII Log_ddmmyy_hhmmss: Contains the output shown on the terminal, contains the binary and ASCII sequence extracted from the .BAM file.
+    - methpos_ddmmyy_hhmmss: Contains the position and the methylation fractions of sites that have methylation fractions above the threshold set.
 - Intermediate files:
     a.
 
