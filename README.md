@@ -5,15 +5,7 @@ This repository contains the script to convert .BAM files to ASCII values.
 - [Modkit](https://github.com/nanoporetech/modkit/blob/master/README.md)
 - [Samtools](https://anaconda.org/bioconda/samtools)
 
-## Code and structure
-The shell script was run in a Conda vEnv and the flow is as follows:
 
-├── Shell/
-│   ├── Samtools/
-│   ├── Modkit/
-├── Python
-```
----
 The script takes 3 inputs in the following order:
 - Input file location
 - Reference Sequence file location
