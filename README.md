@@ -27,7 +27,7 @@ Command Line:
     - ErrorStats_ddmmyyy_hhmmss.txt: Contains error statistics: Error Percentage, Count and position of Bit flips
 - Intermediate files:
     - full_bed.txt: Contains the entire .bed file generarted by modkit (Column descriptions are given in the [modkit documentation](https://github.com/nanoporetech/modkit))
-    - methylation_M
+    - methylation_M is logged in a folder called intermediate files. It contains all the methylation positions and scores.
 
 
 
