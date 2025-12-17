@@ -23,7 +23,7 @@ Command Line:
 - A log directory folder named ASCII logs is created and the following are logged:
     - ASCII Log_ddmmyy_hhmmss.txt: Contains the output shown on the terminal, contains the binary and ASCII sequence extracted from the .BAM file.
     - methpos_ddmmyy_hhmmss.txt: Contains the position and the methylation fractions of sites that have methylation fractions above the threshold set.
-- A log directory folder named Error logs is created and the following are logged:
+- A log directory folder named ErrorStats logs is created and the following are logged:
     - ErrorStats_ddmmyyy_hhmmss.txt: Contains error statistics: Error Percentage, Count and position of Bit flips
 - Intermediate files:
     - full_bed.txt: Contains the entire .bed file generarted by modkit (Column descriptions are given in the [modkit documentation](https://github.com/nanoporetech/modkit)) 
