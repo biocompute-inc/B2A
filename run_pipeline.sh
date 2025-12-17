@@ -1,3 +1,4 @@
+#Get inputs from the user
 if [ -z "$1" ] || [ -z "$2" ]; then
     echo "Usage: $0 <bamfile> <reference_fasta> [bitwidth]"
     echo "bitwidth: 7 or 8 (default: 8)"
@@ -20,7 +21,7 @@ if [ ! -f "$REF_FILE" ]; then
 fi
 
 # ------------------------------
-# Input files
+# Initialising intremediate and output files
 # ------------------------------
 BED_FILE="methylation_cpg.bed"
 METHPOS_FILE="methpos.txt"
@@ -35,7 +36,7 @@ INTERMEDIATE_DIR="intermediate_files"
 mkdir -p "$INTERMEDIATE_DIR"
 
 # ------------------------------
-# 0. Check BAM index
+# 0. Check BAM index (https://github.com/samtools/samtools)
 # ------------------------------
 if [ ! -f "${BAM_FILE}.bai" ]; then
     echo "BAM index not found. Creating index with samtools..."
@@ -62,7 +63,7 @@ echo "Verifying modkit..."
 modkit --version
 
 # ------------------------------
-# 4. Run modkit pileup
+# 4. Run modkit to get full .bed file
 # ------------------------------
 echo "Running modkit pileup..."
 modkit pileup --cpg --mod-thresholds C:0.0 --ref "$REF_FILE" "$BAM_FILE" "$BED_FILE"
@@ -78,7 +79,7 @@ BED_M_FILE="$INTERMEDIATE_DIR/methylation_M.txt"
 awk '$4 == "m" && $11 != 0 {print $3, $11}' "$BED_FILE" > "$BED_M_FILE"
 echo "Saved BED with only M-modified bases to $BED_M_FILE"
 # ------------------------------
-# 5b. Filtering using Dynamic Threshold
+# 5b. Filtering using Dynamic Threshold determined from Python script called get_stats.py
 # ------------------------------
 echo "Computing dynamic mean and median thresholds"
 read MEAN MEDIAN <<< "$(python3 ./Product/get_stats.py)"
@@ -91,7 +92,7 @@ FULL_BED_TEXT="full_bed.txt"
 cp "$BED_FILE" "$FULL_BED_TEXT"
 
 # ------------------------------
-# 6. Run Python script to convert Methylation data --> Binary --> ASCII
+# 6. Run Python script to convert Methylation data --> Binary --> ASCII (meth_analysis.py)
 # ------------------------------
 echo "Processing methylation positions in Python..."
 echo "Selected BITWIDTH = $BITWIDTH"
@@ -107,6 +108,9 @@ echo "Deactivating conda environment..."
 conda deactivate
 
 echo "Logged output to $LOGFILE"
+# ------------------------------
+# 8. Error statistics from error_stats.py
+# ------------------------------
 echo "Do you want to enter test mode to check for errors? Enter Y/N"
 read answer
 

@@ -20,7 +20,7 @@ def process_methylation(file_path, bitwidth):
                 print(f"Skipping unexpected line format: {line}")
 
     # ------------------------------
-    # Generate CG sites
+    # Generate all CG sites which could be methylated 
     # ------------------------------
     start, end, step = 60, 912, 24
     sites = list(range(start, end + 1, step))

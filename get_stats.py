@@ -2,14 +2,15 @@ import statistics
 
 def compute_stats(mfile="./intermediate_files/methylation_M.txt"):
     meth_values = []
-
+#Parsing the methylation fraction and position
     with open(mfile) as f:
         for line in f:
             pos, frac = line.split()
             pos = int(pos)
             frac = float(frac)
 
-            # filter for site specificity and  ONT baseline methylation
+            # filter for methylated C site specificity and  ONT baseline methylation
+            # First 48 nt is non payload region. Every 12th position from 48th position is the desired methylation site. Ignore the G methylation sites
             if pos >= 60 and pos % 12 == 0 and frac > 15.5:
                 meth_values.append(frac)
 

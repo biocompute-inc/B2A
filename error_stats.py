@@ -2,7 +2,7 @@
 import sys
 
 def load_methpositions(path):
-    """Read first column (positions) from methpos file."""
+    """Read first column (positions) from methpos file.""" #methpos_file
     methpositions = []
     try:
         with open(path) as f:
@@ -61,7 +61,7 @@ if __name__ == "__main__":
     sites = list(range(start, end + 1, step))
 
     # 5) Actual bits from methylation data (one per CG site)
-    # actual_bits = [1 if pos in mpos else 0 for pos in sites]
+
     filtered_mpos = []     # actual methylation sites that match brick sites
     actual_bits = []       # 1 or 0 for each brick site
 
