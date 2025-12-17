@@ -26,10 +26,13 @@ BED_FILE="methylation_cpg.bed"
 METHPOS_FILE="methpos.txt"
 LOGDIR="ASCII logs"
 mkdir -p "$LOGDIR"
-
+ERROR_LOGDIR="ErrorStats logs"
+mkdir -p "$ERROR_LOGDIR"
 LOGFILE="$LOGDIR/ASCII_Log_$(date +%d%m%y_%H%M%S).log"
 echo "Logging output to $LOGFILE"
 exec > >(tee -a "$LOGFILE") 2>&1
+INTERMEDIATE_DIR="intermediate_files"
+mkdir -p "$INTERMEDIATE_DIR"
 
 # ------------------------------
 # 0. Check BAM index
@@ -49,7 +52,7 @@ fi
 # ------------------------------
 # 2. Activate environment
 # ------------------------------
-echo "Activating conda environment..."
+echo "Activating conda environment"
 conda activate modkit_env
 
 # ------------------------------
@@ -69,14 +72,16 @@ modkit pileup --cpg --mod-thresholds C:0.0 --ref "$REF_FILE" "$BAM_FILE" "$BED_F
 # ------------------------------
 echo "Filtering methylation data..."
 
-BED_M_FILE="methylation_M.txt"
+# BED_M_FILE="methylation_M.txt"
+BED_M_FILE="$INTERMEDIATE_DIR/methylation_M.txt"
+
 awk '$4 == "m" && $11 != 0 {print $3, $11}' "$BED_FILE" > "$BED_M_FILE"
 echo "Saved BED with only M-modified bases to $BED_M_FILE"
 # ------------------------------
 # 5b. Filtering using Dynamic Threshold
 # ------------------------------
 echo "Computing dynamic mean and median thresholds"
-read MEAN MEDIAN <<< "$(python3 get_stats.py)"
+read MEAN MEDIAN <<< "$(python3 ./Product/get_stats.py)"
 echo "Mean = $MEAN"
 echo "Median = $MEDIAN"
 
@@ -91,7 +96,7 @@ cp "$BED_FILE" "$FULL_BED_TEXT"
 echo "Processing methylation positions in Python..."
 echo "Selected BITWIDTH = $BITWIDTH"
 
-python3 pipe.py "$METHPOS_FILE" "$BITWIDTH"
+python3 ./Product/meth_analysis.py "$METHPOS_FILE" "$BITWIDTH"
 
 cp "$METHPOS_FILE" "$LOGDIR/methpos_$(date +%d%m%y_%H%M%S).txt"
 
@@ -102,3 +107,17 @@ echo "Deactivating conda environment..."
 conda deactivate
 
 echo "Logged output to $LOGFILE"
+echo "Do you want to enter test mode to check for errors? Enter Y/N"
+read answer
+
+if [[ "$answer" == "Y" || "$answer" == "y" ]]; then
+    echo "Calculating Error stats"
+    ERROR_LOGFILE="$ERROR_LOGDIR/ErrorStats_$(date +%d%m%y_%H%M%S).log"
+    echo "Logging error statistics to $ERROR_LOGFILE"
+
+    python3 ./Product/error_stats.py "$METHPOS_FILE" "$BITWIDTH" \
+    | tee -a "$ERROR_LOGFILE"
+
+else
+    echo "Skipping error stats."
+fi

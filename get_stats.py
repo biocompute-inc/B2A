@@ -1,6 +1,6 @@
 import statistics
 
-def compute_stats(mfile="methylation_M.txt"):
+def compute_stats(mfile="./intermediate_files/methylation_M.txt"):
     meth_values = []
 
     with open(mfile) as f:
