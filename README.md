@@ -26,7 +26,8 @@ Command Line:
 - A log directory folder named ErrorStats logs is created and the following are logged:
     - ErrorStats_ddmmyyy_hhmmss.txt: Contains error statistics: Error Percentage, Count and position of Bit flips
 - Intermediate files:
-    - full_bed.txt: Contains the entire .bed file generarted by modkit (Column descriptions are given in the [modkit documentation](https://github.com/nanoporetech/modkit)) 
+    - full_bed.txt: Contains the entire .bed file generarted by modkit (Column descriptions are given in the [modkit documentation](https://github.com/nanoporetech/modkit))
+    - methylation_M
 
 
 
