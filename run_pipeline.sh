@@ -82,7 +82,7 @@ echo "Saved BED with only M-modified bases to $BED_M_FILE"
 # 5b. Filtering using Dynamic Threshold determined from Python script called get_stats.py
 # ------------------------------
 echo "Computing dynamic mean and median thresholds"
-read MEAN MEDIAN <<< "$(python3 ./get_stats.py)"
+read MEAN MEDIAN <<< "$(python3 ./B2A/get_stats.py)"
 echo "Mean = $MEAN"
 echo "Median = $MEDIAN"
 
@@ -97,7 +97,7 @@ cp "$BED_FILE" "$FULL_BED_TEXT"
 echo "Processing methylation positions in Python..."
 echo "Selected BITWIDTH = $BITWIDTH"
 
-python3 ./meth_analysis.py "$METHPOS_FILE" "$BITWIDTH"
+python3 ./B2A/meth_analysis.py "$METHPOS_FILE" "$BITWIDTH"
 
 cp "$METHPOS_FILE" "$LOGDIR/methpos_$(date +%d%m%y_%H%M%S).txt"
 
@@ -119,7 +119,7 @@ if [[ "$answer" == "Y" || "$answer" == "y" ]]; then
     ERROR_LOGFILE="$ERROR_LOGDIR/ErrorStats_$(date +%d%m%y_%H%M%S).log"
     echo "Logging error statistics to $ERROR_LOGFILE"
 
-    python3 ./error_stats.py "$METHPOS_FILE" "$BITWIDTH" \
+    python3 ./B2A/error_stats.py "$METHPOS_FILE" "$BITWIDTH" \
     | tee -a "$ERROR_LOGFILE"
 
 else
