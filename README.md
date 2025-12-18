@@ -12,7 +12,8 @@ The script takes 3 inputs in the following order:
 - Reference Sequence file path (.fasta or .fa)
 - Number of Bits in Byte as set in the wet lab experiments- 7 or 8, defaults to 8
 
-Command Line:
+## Test Command Line:
+Test files are given in this repository and will get cloned. Use the following command line for testing if the pipeline works. The output should read "EpiB"
 ```
 ./run_pipeline.sh input.bam reference.fasta 8
 
