@@ -15,7 +15,11 @@ The script takes 3 inputs in the following order:
 ## Test Command Line:
 Test files are given in this repository and will get cloned. Use the following command line for testing if the pipeline works. The output should read "EpiB"
 ```
-./run_pipeline.sh input.bam reference.fasta 8
+./B2A/run_pipeline.sh /B2A/input.bam /B2A/reference.fasta 8
+
+```
+```
+./B2A/run_pipeline.sh <input file path> <reference fasta path> <number of bits per byte>
 
 ```
 **Note**: The .bam file and has to be in the same root directory as that of the bash script according to the example. Otherwise, full path lengths should be given
