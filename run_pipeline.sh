@@ -51,14 +51,53 @@ if [ -f "$HOME/miniconda3/etc/profile.d/conda.sh" ]; then
 fi
 
 # ------------------------------
-# 2. Activate environment
+# 2. Create and activate environment
 # ------------------------------
+ENV_NAME="modkit_env"
+
+if ! conda env list | awk '{print $1}' | grep -qx "$ENV_NAME"; then
+    echo "Conda environment '$ENV_NAME' not found. Creating it."
+
+    conda create -y -n "$ENV_NAME" python=3.10
+    conda activate "$ENV_NAME"
+
+    echo "Installing required packages..."
+    conda install -y -c bioconda samtools modkit
+    pip install pysam numpy pandas
+
+    echo "Conda environment '$ENV_NAME' created successfully."
+else
+    echo "Conda environment '$ENV_NAME' already exists."
+fi
+
 echo "Activating conda environment"
 conda activate modkit_env
 
 # ------------------------------
-# 3. Verify modkit
+# 3. Verify Correct Version of modkit
 # ------------------------------
+REQUIRED_MODKIT_VERSION="0.5.0"
+
+echo "Checking modkit version..."
+
+if command -v modkit >/dev/null 2>&1; then
+    INSTALLED_MODKIT_VERSION=$(modkit --version | awk '{print $NF}')
+    echo "Found modkit version: $INSTALLED_MODKIT_VERSION"
+
+    if [ "$INSTALLED_MODKIT_VERSION" != "$REQUIRED_MODKIT_VERSION" ]; then
+        echo "modkit version mismatch. Required: $REQUIRED_MODKIT_VERSION"
+        echo "Installing modkit==$REQUIRED_MODKIT_VERSION..."
+        conda install -y -c bioconda modkit="$REQUIRED_MODKIT_VERSION"
+    else
+        echo "modkit version is correct."
+    fi
+else
+    echo "modkit not found. Installing modkit==$REQUIRED_MODKIT_VERSION..."
+    conda install -y -c bioconda modkit="$REQUIRED_MODKIT_VERSION"
+fi
+
+# Final verification
+echo "Using modkit version:"
 echo "Verifying modkit..."
 modkit --version
 
