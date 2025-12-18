@@ -32,8 +32,8 @@ mkdir -p "$ERROR_LOGDIR"
 LOGFILE="$LOGDIR/ASCII_Log_$(date +%d%m%y_%H%M%S).log"
 echo "Logging output to $LOGFILE"
 exec > >(tee -a "$LOGFILE") 2>&1
-INTERMEDIATE_DIR="intermediate_files"
-mkdir -p "$INTERMEDIATE_DIR"
+# INTERMEDIATE_DIR="intermediate_files"
+# mkdir -p "$INTERMEDIATE_DIR"
 
 # ------------------------------
 # 0. Check BAM index (https://github.com/samtools/samtools)
@@ -74,7 +74,7 @@ modkit pileup --cpg --mod-thresholds C:0.0 --ref "$REF_FILE" "$BAM_FILE" "$BED_F
 echo "Filtering methylation data..."
 
 # BED_M_FILE="methylation_M.txt"
-BED_M_FILE="$INTERMEDIATE_DIR/methylation_M.txt"
+BED_M_FILE="methylation_M.txt"
 
 awk '$4 == "m" && $11 != 0 {print $3, $11}' "$BED_FILE" > "$BED_M_FILE"
 echo "Saved BED with only M-modified bases to $BED_M_FILE"
