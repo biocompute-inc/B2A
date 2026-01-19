@@ -1,3 +1,4 @@
+set -euo pipefail
 #Get inputs from the user
 if [ -z "$1" ] || [ -z "$2" ]; then
     echo "Usage: $0 <bamfile> <reference_fasta> [bitwidth]"
@@ -25,9 +26,9 @@ fi
 # ------------------------------
 BED_FILE="methylation_cpg.bed"
 METHPOS_FILE="methpos.txt"
-LOGDIR="ASCII logs"
+LOGDIR="ASCII_logs"
 mkdir -p "$LOGDIR"
-ERROR_LOGDIR="ErrorStats logs"
+ERROR_LOGDIR="ErrorStats_logs"
 mkdir -p "$ERROR_LOGDIR"
 LOGFILE="$LOGDIR/ASCII_Log_$(date +%d%m%y_%H%M%S).log"
 echo "Logging output to $LOGFILE"
@@ -158,8 +159,7 @@ if [[ "$answer" == "Y" || "$answer" == "y" ]]; then
     ERROR_LOGFILE="$ERROR_LOGDIR/ErrorStats_$(date +%d%m%y_%H%M%S).log"
     echo "Logging error statistics to $ERROR_LOGFILE"
 
-    python3 ./B2A/error_stats.py "$METHPOS_FILE" "$BITWIDTH" \
-    | tee -a "$ERROR_LOGFILE"
+    python3 ./B2A/error_stats.py "$METHPOS_FILE" "$BITWIDTH"  | tee -a "$ERROR_LOGFILE"
 
 else
     echo "Skipping error stats."
