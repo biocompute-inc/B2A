@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+source ~/home/naveen/miniforge3/condabin/conda.sh
 set -euo pipefail
 #Get inputs from the user
 if [ -z "$1" ] || [ -z "$2" ]; then
@@ -148,19 +150,4 @@ echo "Deactivating conda environment..."
 conda deactivate
 
 echo "Logged output to $LOGFILE"
-# ------------------------------
-# 8. Error statistics from error_stats.py
-# ------------------------------
-echo "Do you want to enter test mode to check for errors? Enter Y/N"
-read answer
-
-if [[ "$answer" == "Y" || "$answer" == "y" ]]; then
-    echo "Calculating Error stats"
-    ERROR_LOGFILE="$ERROR_LOGDIR/ErrorStats_$(date +%d%m%y_%H%M%S).log"
-    echo "Logging error statistics to $ERROR_LOGFILE"
-
-    python3 ./B2A/error_stats.py "$METHPOS_FILE" "$BITWIDTH"  | tee -a "$ERROR_LOGFILE"
-
-else
-    echo "Skipping error stats."
-fi
+echo "Pipeline completed successfully."
