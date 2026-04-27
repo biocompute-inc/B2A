@@ -1,0 +1,22 @@
+Input methpos file: /tmp/tmp.TpvWmuUQsr/methpos.txt
+Bitwidth: 8
+Desired word: EpiB
+
+Each letter in binary: 01000101 01110000 01101001 01000010
+Desired word in binary (no spaces): 01000101011100000110100101000010
+
+Desired methylated brick numbers are: [3, 7, 9, 11, 12, 13, 19, 20, 22, 25, 27, 32]
+Desired methylated CG sites are: [84, 180, 228, 276, 300, 324, 468, 492, 540, 612, 660, 780]
+Actual methylated CG sites are: [84, 228, 276, 300, 324, 468, 492, 540, 612, 660, 780]
+Desired percentage of 1's: 37.5
+
+Total positions compared: 32
+Matches (desired == actual): 31
+
+1 -> 0 flips (desired 1, actual 0): 1
+Positions (index, CG site):
+  Bit/Brick number= 6, CG_site= 180
+
+0 -> 1 flips (desired 0, actual 1): 0
+Positions (index, CG site):
+Error Percentage: 3.125

@@ -1,0 +1,15 @@
+Found 1 BAM file(s) to process.
+Enter desired word for error stats (leave blank to skip): Checking modkit version...
+Found modkit version: 0.5.0
+modkit version OK.
+
+========================================
+Processing BAM: input.bam
+Barcode label: input
+BAM index not found. Creating index with samtools...
+Running modkit pileup...
+> parsed user-input threshold 0 for mod-code C
+> calculated chunk size: 6, interval size 100000, processing 600000 positions concurrently
+> filtering to only CpG motifs
+> Error! Failed to read fasta index from "reference.fasta.fai"
+ caused by No such file or directory (os error 2)

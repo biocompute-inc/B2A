@@ -1,0 +1,85 @@
+Found 1 BAM file(s) to process.
+Enter desired word for error stats (leave blank to skip): Checking modkit version...
+Found modkit version: 0.5.0
+modkit version OK.
+
+========================================
+Processing BAM: input.bam
+Barcode label: input
+Running modkit pileup...
+> parsed user-input threshold 0 for mod-code C
+> calculated chunk size: 6, interval size 100000, processing 600000 positions concurrently
+> filtering to only CpG motifs
+> attempting to sample 10042 reads
+> Using filter threshold 0.8046875 for C.
+> Threshold of 0 for mod code C is very low. Consider increasing the filter-percentile or specifying a higher threshold.
+> Done, processed 280 rows. Processed ~227 reads and skipped zero reads.
+Filtering methylation data...
+Computing dynamic mean and median thresholds...
+Mean = 37.1012
+Median = 36.73
+Processing methylation positions in Python...
+Selected BITWIDTH = 8
+CG sites: [60, 84, 108, 132, 156, 180, 204, 228, 252, 276, 300, 324, 348, 372, 396, 420, 444, 468, 492, 516, 540, 564, 588, 612, 636, 660, 684, 708, 732, 756, 780, 804, 828, 852, 876, 900]
+Methylation status: [0, 1, 0, 0, 0, 1, 0, 1, 0, 1, 1, 1, 0, 0, 0, 0, 0, 1, 1, 0, 1, 0, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0]
+Position: 60, Bit Value: 0
+Position: 84, Bit Value: 1
+Position: 108, Bit Value: 0
+Position: 132, Bit Value: 0
+Position: 156, Bit Value: 0
+Position: 180, Bit Value: 1
+Position: 204, Bit Value: 0
+Position: 228, Bit Value: 1
+Position: 252, Bit Value: 0
+Position: 276, Bit Value: 1
+Position: 300, Bit Value: 1
+Position: 324, Bit Value: 1
+Position: 348, Bit Value: 0
+Position: 372, Bit Value: 0
+Position: 396, Bit Value: 0
+Position: 420, Bit Value: 0
+Position: 444, Bit Value: 0
+Position: 468, Bit Value: 1
+Position: 492, Bit Value: 1
+Position: 516, Bit Value: 0
+Position: 540, Bit Value: 1
+Position: 564, Bit Value: 0
+Position: 588, Bit Value: 0
+Position: 612, Bit Value: 1
+Position: 636, Bit Value: 0
+Position: 660, Bit Value: 1
+Position: 684, Bit Value: 0
+Position: 708, Bit Value: 0
+Position: 732, Bit Value: 0
+Position: 756, Bit Value: 0
+Position: 780, Bit Value: 1
+Position: 804, Bit Value: 0
+Position: 828, Bit Value: 0
+Position: 852, Bit Value: 0
+Position: 876, Bit Value: 0
+Position: 900, Bit Value: 0
+Grouped strings (8-bit chunks): ['01000101', '01110000', '01101001', '01000010', '0000']
+ASCII characters: ['E', 'p', 'i', 'B']
+Input methpos file: /tmp/tmp.qpXClcUW7V/methpos.txt
+Bitwidth: 8
+Desired word: EpiB
+
+Each letter in binary: 01000101 01110000 01101001 01000010
+Desired word in binary (no spaces): 01000101011100000110100101000010
+
+Desired methylated brick numbers are: [3, 7, 9, 11, 12, 13, 19, 20, 22, 25, 27, 32]
+Desired methylated CG sites are: [84, 180, 228, 276, 300, 324, 468, 492, 540, 612, 660, 780]
+Actual methylated CG sites are: [84, 180, 228, 276, 300, 324, 468, 492, 540, 612, 660, 780]
+Desired percentage of 1's: 37.5
+
+Total positions compared: 32
+Matches (desired == actual): 32
+
+1 -> 0 flips (desired 1, actual 0): 0
+Positions (index, CG site):
+
+0 -> 1 flips (desired 0, actual 1): 0
+Positions (index, CG site):
+Error Percentage: 0.0
+Pipeline completed successfully.
+Logged output to ASCII_logs/ASCII_Log_230426_134701.log

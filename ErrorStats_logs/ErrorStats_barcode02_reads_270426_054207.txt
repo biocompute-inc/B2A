@@ -1,0 +1,36 @@
+Input methpos file: /tmp/tmp.qrcLqgCZky/methpos.txt
+Bitwidth: 8
+Desired word: HELLO
+
+Each letter in binary: 01001000 01000101 01001100 01001100 01001111
+Desired word in binary (no spaces): 0100100001000101010011000100110001001111
+
+Warning: desired pattern (40 bits) is longer than available CG sites (36). Only comparing first 36 bits.
+
+Desired methylated brick numbers are: [3, 6, 11, 15, 17, 19, 22, 23, 27, 30, 31, 35, 38, 39, 40, 41]
+Desired methylated CG sites are: [84, 156, 276, 372, 420, 468, 540, 564, 660, 732, 756, 852, 924, 948, 972, 996]
+Actual methylated CG sites are: [84, 228, 276, 300, 324, 468, 492, 540, 612, 660, 780]
+Desired percentage of 1's: 40.0
+
+Total positions compared: 36
+Matches (desired == actual): 23
+
+1 -> 0 flips (desired 1, actual 0): 7
+Positions (index, CG site):
+  Bit/Brick number= 5, CG_site= 156
+  Bit/Brick number= 14, CG_site= 372
+  Bit/Brick number= 16, CG_site= 420
+  Bit/Brick number= 22, CG_site= 564
+  Bit/Brick number= 29, CG_site= 732
+  Bit/Brick number= 30, CG_site= 756
+  Bit/Brick number= 34, CG_site= 852
+
+0 -> 1 flips (desired 0, actual 1): 6
+Positions (index, CG site):
+  Bit/Brick number= 8, CG_site= 228
+  Bit/Brick number= 11, CG_site= 300
+  Bit/Brick number= 12, CG_site= 324
+  Bit/Brick number= 19, CG_site= 492
+  Bit/Brick number= 24, CG_site= 612
+  Bit/Brick number= 31, CG_site= 780
+Error Percentage: 42.5

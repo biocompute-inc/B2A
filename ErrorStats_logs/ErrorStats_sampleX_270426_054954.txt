@@ -1,0 +1,32 @@
+Input methpos file: /tmp/tmp.px5Vt431U2/methpos.txt
+Bitwidth: 8
+Desired word: DATA
+
+Each letter in binary: 01000100 01000001 01010100 01000001
+Desired word in binary (no spaces): 01000100010000010101010001000001
+
+Desired methylated brick numbers are: [3, 7, 11, 17, 19, 21, 23, 27, 33]
+Desired methylated CG sites are: [84, 180, 276, 420, 468, 516, 564, 660, 804]
+Actual methylated CG sites are: [84, 228, 276, 300, 324, 468, 492, 540, 564, 612, 660, 780]
+Desired percentage of 1's: 28.125
+
+Total positions compared: 32
+Matches (desired == actual): 21
+
+1 -> 0 flips (desired 1, actual 0): 4
+Positions (index, CG site):
+  Bit/Brick number= 6, CG_site= 180
+  Bit/Brick number= 16, CG_site= 420
+  Bit/Brick number= 20, CG_site= 516
+  Bit/Brick number= 32, CG_site= 804
+
+0 -> 1 flips (desired 0, actual 1): 7
+Positions (index, CG site):
+  Bit/Brick number= 8, CG_site= 228
+  Bit/Brick number= 11, CG_site= 300
+  Bit/Brick number= 12, CG_site= 324
+  Bit/Brick number= 19, CG_site= 492
+  Bit/Brick number= 21, CG_site= 540
+  Bit/Brick number= 24, CG_site= 612
+  Bit/Brick number= 31, CG_site= 780
+Error Percentage: 34.375

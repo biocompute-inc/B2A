@@ -1,0 +1,1 @@
+ERROR: Invalid word-map line 'EOF'. Expected: <barcode_or_bamname> <intended_word>
